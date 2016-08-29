@@ -7,4 +7,3 @@ org: redhat
 loc: nyc
 hostgroup: rhel7base
 activationkey: ak-Reg_To_Library_soe_no_puppet
-withpuppet: false
