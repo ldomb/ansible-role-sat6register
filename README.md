@@ -1,5 +1,5 @@
-# README.md
-# Ansible Role: Acme 2.x
+# Register a host with Red Hat Satellite 6
+# Ansible Role: sat6register
 
 NOT READY FOR USE YET
 
