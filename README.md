@@ -38,7 +38,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: all
       roles:
-         - { role: ldomb.sat6register }
+         - { role: sat6register, sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com }
 
 ## License
 
