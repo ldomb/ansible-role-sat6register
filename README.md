@@ -1,31 +1,47 @@
-Role Name
-=========
+NOT READY FOR USE YET
 
-A brief description of the role goes here.
+Role sat6reg
+============
+
+This roles allows the registration of hosts of any kind running Red Hat Enterprise Linux to a Red Hat Satellite 6 server. The role gives you the option to register your host with or without puppet as a configuration management tool. If you chose puppet as a configuration management tool you can also add a host group which will apply your puppet classes within that hostgroup during the puppet runs.  
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+>= ansible 2.1
+
+You need to have a working satellite 6 server in place with an activation key allowing you to connect to satellite6. You need the following repos enabled:
+
+rhel-7-server-rpms
+rhel-7-server-satellite-tools-6.2-rpms
+
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com
+admin_user: admin
+admin_pass: valutpass
+org: redhat
+loc: nyc
+hostgroup: rhel7base
+activationkey: ak-Reg_To_Library_soe_no_puppet
+withpuppet: false
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+none
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: ldomb.sat6reg }
 
 License
 -------
@@ -34,5 +50,4 @@ BSD
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2016 by Laurent Domb
