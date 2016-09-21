@@ -1,10 +1,10 @@
 ---
 # handlers file for sat6register
-- name: Start the katello-agent
+- name: Start katello-agent
   service:
     name: goferd
     state: started
-- name: Enable the katello-agent
+- name: Enable katello-agent
   service:
     name: goferd
     enabled: yes
