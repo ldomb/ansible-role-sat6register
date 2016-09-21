@@ -11,22 +11,22 @@ This roles allows the registration of hosts of any kind running Red Hat Enterpri
 
 You need to have a working Red Hat Satellite 6 server in place with an activation key allowing you to register with Satellite 6.
 To be sucessfull you need to add the following yum repos to the activationkey:
-
-rhel-7-server-rpms
+<br />
+rhel-7-server-rpms<br />
 rhel-7-server-satellite-tools-6.2-rpms
-
+<br />
 ## Role Variables
 
 Available variables are listed below, along with default values:
-
-sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com
-admin_user: admin
-admin_pass: {{ vault_admin_pass }} 
-org: redhat
-loc: nyc
-hostgroup: rhel7base or "false" if none
-activationkey: ak-Reg_To_Library_soe_no_puppet or "false" if none
-updatehost: "true" or "false"
+<br />
+sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com<br />
+admin_user: admin<br />
+admin_pass: {{ vault_admin_pass }} <br />
+org: redhat<br />
+loc: nyc<br />
+hostgroup: rhel7base or "false" if none<br />
+activationkey: ak-Reg_To_Library_soe_no_puppet or "false" if none<br />
+updatehost: "true" or "false"<br />
 
 ## Dependencies
 
