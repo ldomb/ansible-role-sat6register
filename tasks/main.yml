@@ -31,7 +31,7 @@
   when: hostgroup == 'false'
 
 - name: register to satellite6 just for content 
-  command: "subscription-manager register --org={{ org }} --activationkey={{ activationkey }} --force"
+  command: "subscription-manager register --org={{ org }} --activationkey={{ activationkey }}"
   when: hostgroup == 'false'
 
 - name: install the katello-agent
