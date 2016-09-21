@@ -42,7 +42,7 @@ Including an example of how to use your role (for instance, with variables passe
 
 ## License
 
-GPLv2
+GPLv3
 
 ## Author Information
 This role was created in 2016 by Laurent Domb
