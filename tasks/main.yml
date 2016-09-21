@@ -31,14 +31,13 @@
 - name: register to satellite6 just for content 
   command: "subscription-manager register --org={{ org }} --activationkey={{ activationkey }}"
   when: hostgroup == 'false'
+  register: 'reg_return'
 
 - name: install the katello-agent
-  command:  "/usr/bin/yum -y install katello-agent"
-  when: hostgroup == 'false'
-
-- name: restart katello-agent
-  service:
-    name: goferd
-    state: restarted
-    enabled: yes
-  when: hostgroup == 'false'
+  yum:
+    name: katello-agent
+    state: latest
+  when: hostgroup == 'false' and reg_return|success
+  notfiy:
+    - Start katello-agent
+    - Enable katello-agent
