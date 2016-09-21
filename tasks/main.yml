@@ -25,9 +25,7 @@
   when: hostgroup != 'false'
 
 - name: install katello rpm if the value of withpuppet is not set
-  yum:
-    name: "http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
-    state: present 
+  command:  "/usr/bin/yum -y localinstall http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
   when: hostgroup == 'false'
 
 - name: register to satellite6 just for content 
@@ -35,9 +33,7 @@
   when: hostgroup == 'false'
 
 - name: install the katello-agent
-  yum: 
-    name: katello-agent
-    state: present
+  command:  "/usr/bin/yum -y install katello-agent"
   when: hostgroup == 'false'
 
 - name: restart katello-agent
