@@ -38,6 +38,6 @@
     name: katello-agent
     state: latest
   when: hostgroup == 'false' and reg_return|success
-  notfiy:
+  notify:
     - Start katello-agent
     - Enable katello-agent
