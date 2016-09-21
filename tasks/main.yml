@@ -1,18 +1,18 @@
 ---
 # tasks register to satellite6 with or without puppet
 #
-- name: workaround as DNS is not working
+- name: Workaround if you have a non working DNS
   lineinfile: 
     dest: /etc/hosts
     line: "{{ sat6_ip }} {{ sat6_fqdn }} sat6"
 
-- name: download file bootstrap.py from satellite6
+- name: Download bootstrap.py from the {{ sat6_fqdn }} 
   get_url:
     url: "http://{{ sat6_fqdn }}/pub/bootstrap.py"
     dest: /usr/local/sbin/bootstrap.py
   when: hostgroup != 'false'
   
-- name: copy bootstrap script to /usr/local/sbin and make it executable
+- name: Copy bootstrap.py script to /usr/local/sbin and make it executable
   file:
     path: /usr/local/sbin/bootstrap.py
     mode: 0755
@@ -20,20 +20,20 @@
     group: root
   when: hostgroup != 'false'
 
-- name: register to satellite6 with puppet and fail if the host was already registered
+- name: Register to Satellite6 with puppet enabled and add it to the correct hostgroup
   command: "/usr/local/sbin/bootstrap.py -l {{ admin_user}} -p {{ admin_pass }} -s {{ sat6_fqdn }} -o {{ org }} -L {{ loc }} -g {{ hostgroup }} -a {{ activationkey }}"
   when: hostgroup != 'false'
 
-- name: install katello rpm if the value of withpuppet is not set
+- name: Install the katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }}
   command:  "/usr/bin/yum -y localinstall http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
   when: hostgroup == 'false'
 
-- name: register to satellite6 just for content 
+- name: Register to Satellite6 only for content 
   command: "subscription-manager register --org={{ org }} --activationkey={{ activationkey }}"
   when: hostgroup == 'false'
   register: 'reg_return'
 
-- name: install the katello-agent
+- name: Install the katello-agent
   yum:
     name: katello-agent
     state: latest
@@ -42,6 +42,6 @@
     - Start katello-agent
     - Enable katello-agent
 
-- name: update host to latest errata within the attached content view
+- name: Update the host to latest errata within the attached content view
   command: /usr/bin/yum -y update
   when: updatehost != 'false'

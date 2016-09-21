@@ -1,17 +1,16 @@
 # Register a host with Red Hat Satellite 6
 # Ansible Role: sat6register
 
-NOT READY FOR USE YET
-
 ## Role sat6register
 
-This roles allows the registration of hosts of any kind running Red Hat Enterprise Linux to a Red Hat Satellite 6 server. The role gives you the option to register your host with or without puppet as a configuration management tool. If you chose puppet as a configuration management tool you can also add a host group which will apply your puppet classes within that hostgroup during the puppet runs.  
+This roles allows the registration of hosts of any kind running Red Hat Enterprise Linux 5,6,7 to a Red Hat Satellite 6 server. The role gives you the option to register your host with or without puppet as a configuration management tool. It also gives you the option of updateing the host to the latest patch level during registration. If you chose puppet as a configuration management tool you can also add a host group which will apply your puppet classes within that hostgroup during the puppet run.  
 
 ## Requirements
 
 >= ansible 2.1
 
-You need to have a working satellite 6 server in place with an activation key allowing you to connect to satellite6. You need the following repos enabled:
+You need to have a working Red Hat Satellite 6 server in place with an activation key allowing you to register with Satellite 6.
+To be sucessfull you need to add the following yum repos to the activationkey:
 
 rhel-7-server-rpms
 rhel-7-server-satellite-tools-6.2-rpms
@@ -22,11 +21,12 @@ Available variables are listed below, along with default values:
 
 sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com
 admin_user: admin
-admin_pass: valutpass
+admin_pass: {{ vault_admin_pass }} 
 org: redhat
 loc: nyc
-hostgroup: rhel7base
-activationkey: ak-Reg_To_Library_soe_no_puppet
+hostgroup: rhel7base or "false" if none
+activationkey: ak-Reg_To_Library_soe_no_puppet or "false" if none
+updatehost: "true" or "false"
 
 ## Dependencies
 
