@@ -7,4 +7,4 @@
 - name: Enable katello-agent
   service:
     name: goferd
-    state: enabled
+    enabled: yes

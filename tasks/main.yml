@@ -41,3 +41,7 @@
   notify:
     - Start katello-agent
     - Enable katello-agent
+
+- name: update host to latest errata within the attached content view
+  command: /usr/bin/yum -y update
+  when: updatehost != 'false'
