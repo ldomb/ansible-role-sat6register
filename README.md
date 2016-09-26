@@ -30,7 +30,7 @@ updatehost: "true" or "false"
 
 ## Dependencies
 
-For the admin password you will need to generate a vault_admin_pass and place the encrypted password in the groups_vars/all/vault files
+For the admin password you will need to generate a vault_admin_pass and place the encrypted password in group_vars/all/vault 
 
 ## Example Playbook
 
