@@ -1,36 +1,36 @@
-# Register a host with Red Hat Satellite 6
+# Register hosts with Red Hat Satellite 6
 # Ansible Role: sat6register
 
 ## Role sat6register
 
-This roles allows the registration of hosts of any kind running Red Hat Enterprise Linux 5,6,7 to a Red Hat Satellite 6 server. The role gives you the option to register your host with or without puppet as a configuration management tool. It also gives you the option of updateing the host to the latest patch level during registration. If you chose puppet as a configuration management tool you can also add a host group which will apply your puppet classes within that hostgroup during the puppet run.  
+This role allows the registration of baremetal,virtual and cloud instances running Red Hat Enterprise Linux 5,6,7 against a Red Hat Satellite 6 server. The role gives you the option to register your host/s with or without puppet as a configuration management tool.  
+It also gives you the ability to update the host/s to the latest patch level during registration. If you choose puppet as a configuration management tool you can add a hostgroup to the ansible run which will apply your puppet classes within that hostgroup during registration.  
 
 ## Requirements
 
 >= ansible 2.1
 
 You need to have a working Red Hat Satellite 6 server in place with an activation key allowing you to register with Satellite 6.
-To be sucessfull you need to add the following yum repos to the activationkey:
-<br />
-rhel-7-server-rpms<br />
+To be successful you need to add the following yum repos to the activationkey:
+
+rhel-7-server-rpms  
 rhel-7-server-satellite-tools-6.2-rpms
-<br />
+
 ## Role Variables
 
 Available variables are listed below, along with default values:
-<br />
-sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com<br />
-admin_user: admin<br />
-admin_pass: {{ vault_admin_pass }} <br />
-org: redhat<br />
-loc: nyc<br />
-hostgroup: rhel7base or "false" if none<br />
-activationkey: ak-Reg_To_Library_soe_no_puppet or "false" if none<br />
-updatehost: "true" or "false"<br />
+
+sat6_fqdn: https://sat6ldo.rdu.salab.redhat.com  
+admin_user: admin  
+org: redhat  
+loc: nyc  
+hostgroup: rhel7base or "false" if none  
+activationkey: ak-Reg_To_Library_soe_no_puppet or "false" if none  
+updatehost: "true" or "false"  
 
 ## Dependencies
 
-none
+For the admin password you will need to generate a vault_admin_pass and place the encrypted password in the groups_vars/all/vault files
 
 ## Example Playbook
 
