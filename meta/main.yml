@@ -1,6 +1,6 @@
 galaxy_info:
   author: Laurent Domb
-  description: Register a host with Satellite 6
+  description: Register with Satellite 6
   company: Red Hat Inc.
   license: GPLv3
   min_ansible_version: 1.2
