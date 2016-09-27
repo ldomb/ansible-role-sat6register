@@ -29,6 +29,12 @@ updatehost: "true" or "false"
 
 For the admin password you will need to generate a vault_admin_pass and place the encrypted password in group_vars/all/vault 
 
+If you are running this from a roles/ directory specify the path to the vars and vault file  
+vars_files:  
+    - "roles/sat6register/group_vars/all/vars"  
+    - "roles/sat6register/group_vars/all/vault"  
+
+
 ## Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
