@@ -1,9 +1,5 @@
 ---
 - hosts: all
   remote_user: root
-  vars_files:
-    - "roles/sat6register/group_vars/all/vars"
-    - "roles/sat6register/group_vars/all/vault"
   roles:
     - sat6register
-
