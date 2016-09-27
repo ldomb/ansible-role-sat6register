@@ -27,7 +27,9 @@ updatehost: "true" or "false"
 
 ## Dependencies
 
-For the admin password you will need to generate a vault_admin_pass variable and place the variable admin_pass: "{{ vault_admin_pass }}" in group_vars/all/vars. This tells ansible to go look for the encrypted password in group_vars/all/vault.  
+For the admin password you will need to generate a vault_admin_pass variable and place the variable  
+admin_pass: "{{ vault_admin_pass }}" in group_vars/all/vars file.  
+This tells ansible to go look for the encrypted vault_admin_pass variable in the encrypted group_vars/all/vault file. 
 
 If you are running this from a roles/ directory specify the path to the vars and vault file in your playbook calling the sat6register role.  
  
