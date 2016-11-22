@@ -11,6 +11,11 @@
     url: "http://{{ sat6_fqdn }}/pub/bootstrap.py"
     dest: /usr/local/sbin/bootstrap.py
   when: hostgroup != 'false'
+  register: get_url_result
+  until: get_url_result | succeeded
+  retries: 10
+  delay: 1
+  ignore_errors: yes
   
 - name: Copy bootstrap.py script to /usr/local/sbin and make it executable
   file:
