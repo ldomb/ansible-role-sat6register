@@ -50,5 +50,7 @@
     - Enable katello-agent
 
 - name: Update the host to latest errata within the attached content view
-  command: /usr/bin/yum -y update
+  yum: 
+    name: '*'
+    state: latest
   when: updatehost != 'false'
