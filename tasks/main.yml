@@ -2,11 +2,11 @@
 # tasks register to satellite6 with or without puppet
 #
 - name: Workaround if you have a non working DNS
-  lineinfile: 
+  lineinfile:
     dest: /etc/hosts
     line: "{{ sat6_ip }} {{ sat6_fqdn }} sat6"
 
-- name: Download bootstrap.py from the {{ sat6_fqdn }} 
+- name: Download bootstrap.py from the {{ sat6_fqdn }}
   get_url:
     url: "http://{{ sat6_fqdn }}/pub/bootstrap.py"
     dest: /usr/local/sbin/bootstrap.py
@@ -16,7 +16,7 @@
   retries: 10
   delay: 1
   ignore_errors: yes
-  
+
 - name: Copy bootstrap.py script to /usr/local/sbin and make it executable
   file:
     path: /usr/local/sbin/bootstrap.py
@@ -30,10 +30,12 @@
   when: hostgroup != 'false'
 
 - name: Install the katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }}
-  command:  "/usr/bin/yum -y localinstall http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm"
+  yum:
+    name: http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm
+    state: present
   when: hostgroup == 'false'
 
-- name: Register to Satellite6 only for content 
+- name: Register to Satellite6 only for content
   command: "subscription-manager register --org={{ org }} --activationkey={{ activationkey }}"
   when: hostgroup == 'false'
   register: 'reg_return'
