@@ -38,8 +38,8 @@
 - name: Register to Satellite6 only for content
   redhat_subscription:
     state: present
-    activationkey: {{ activationkey }}
-    org_id: {{ org }}
+    activationkey: "{{ activationkey }}"
+    org_id: "{{ org }}"
     autosubscribe: true
   when: hostgroup == 'false'
   register: 'reg_return'
